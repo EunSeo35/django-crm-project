@@ -11,5 +11,15 @@ class Customer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.name}"
+
+class Purchase(models.Model):
+    customer = models.ForeignKey(Customer, on_delete = models.CASCADE, related_name = 'purchases')
+    product_name = models.CharField(max_length=100)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    date = models.DateField()
+    
+    def __str__(self):
+        return f"{self.product_name} - {self.customer.name}"
+    
     
