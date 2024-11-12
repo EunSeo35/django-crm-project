@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer List</title>
+</head>
+<body>
+    <div>
+        <h2>고객 정보 리스트</h2>
+        <a>➕</a>    <a>📈</a>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>이름</th>
+                        <th>이메일</th>
+                        <th>전화번호</th>
+                        <th>주소</th>
+                        <th>가입일</th>
+                        <th>상태</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for customer in customers %}
+                    <tr>
+                        <td>{{ customer.id }}</td>
+                        <td>{{ customer.name }}</td>
+                        <td>{{ customer.email }}</td>
+                        <td>{{ customer.phone }}</td>
+                        <td>{{ customer.address }}</td>
+                        <td>{{ customer.created_at }}</td>
+                        <td>
+                            <a>✏️</a>
+                            <a>➖</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
