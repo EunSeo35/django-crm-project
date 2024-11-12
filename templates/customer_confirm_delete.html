@@ -11,8 +11,7 @@
     <form method="post">
         {% csrf_token %}
         <button type="submit">네</button>
-        
-        <a href="{% url 'customer_management:customer_list' %}">Cancel</a>
+        <button type="button" onclick="location.href='{% url 'customer_management:customer_list' %}'">아니오</button>
     </form>
 </body>
 </html>
