@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Customer</title>
+</head>
+<body>
+    <h2>회원정보 삭제</h2>
+    <p>{{ object.name }}님의 회원정보를 삭제하시겠습니까?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">네</button>
+        
+        <a href="{% url 'customer_management:customer_list' %}">Cancel</a>
+    </form>
+</body>
+</html>
