@@ -9,7 +9,8 @@
 <body>
     <div>
         <h2>고객 정보 리스트</h2>
-        <a href =  "{% url 'customer_management:customer_add' %}">➕</a>    <a>📈</a>
+        <a href =  "{% url 'customer_management:customer_add' %}">➕</a>    
+        <a>📈</a>
        
         <div class="table-container">
             <table>
@@ -34,7 +35,7 @@
                         <td>{{ customer.address }}</td>
                         <td>{{ customer.created_at }}</td>
                         <td>
-                            <a>✏️</a>
+                            <a href =  "{% url 'customer_management:customer_edit' pk=customer.pk %}">✏️</a>
                             <a>➖</a>
                         </td>
                     </tr>
