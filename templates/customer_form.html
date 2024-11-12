@@ -1,0 +1,8 @@
+<!-- customer_management/templates/customer_management/customer_form.html -->
+
+<h2>{% if object %}Edit{% else %}Add{% endif %} Customer</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
