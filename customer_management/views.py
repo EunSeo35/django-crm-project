@@ -15,13 +15,13 @@ class CustomerListView(LoginRequiredMixin,ListView):
 class CustomerCreateView(CreateView):
     model = Customer
     template_name = 'customer_form.html'
-    fields = ['name', 'email', 'phone', 'address']
+    fields = ['name', 'gender', 'age', 'email', 'phone', 'address'] # 성별과 나이 필드 추가
     success_url = reverse_lazy('customer_management:customer_list') # customer_management/urls.py에서 customer_list라는 이름을 가진 URL 패턴을 찾아서 해당 URL을 반환
  
 class CustomerUpdateView(UpdateView):
     model = Customer
     template_name = 'customer_form.html'
-    fields = ['name', 'email', 'phone', 'address']
+    fields = ['name', 'gender', 'age', 'email', 'phone', 'address'] # 성별과 나이 필드 추가
     success_url = reverse_lazy('customer_management:customer_list') 
  
 class CustomerDeleteView(DeleteView):

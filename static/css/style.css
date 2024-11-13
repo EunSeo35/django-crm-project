@@ -49,13 +49,21 @@ h2 {
 .customer-form input[type="email"],
 .customer-form input[type="tel"],
 .customer-form input[type="password"],
-textarea {
-    width: 95%;
+.customer-form input[type="number"],
+textarea, 
+.customer-form select {
+    width: 90%;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
-
+/* 성별 및 나이 필드 추가 스타일 */
+.customer-form select {
+    appearance: none; /* 기본 드롭다운 화살표 제거 */
+    background-image: url('data:image/svg+xml;base64,...'); /* 드롭다운 화살표 이미지 추가 (선택 사항) */
+    background-position: right 10px center; /* 화살표 위치 조정 */
+    background-repeat: no-repeat; /* 반복 방지 */
+}
 .delete-confirmation {
     display: flex;
     flex-direction: column;
@@ -127,7 +135,7 @@ th, td {
 }
 
 th {
-    background-color: #ffdb00;
+    background-color: #FFC220;
     color: #333;
     font-weight: bold;
 }
