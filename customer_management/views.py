@@ -52,3 +52,13 @@ def customer_statistics(request):
         'total_sales': total_sales,
         'recent_purchases': recent_purchases,
     })
+# from django.urls import reverse_lazy
+# from django.shortcuts import render
+# from django.views.generic import ListView, CreateView
+# from .models import Customer
+
+# class CustomerCreateView(CreateView):
+#     model = Customer
+#     template_name = 'customer_management/customer_form.html'
+#     fields = ['name','email', 'phone', 'address']
+#     success_url = reverse_lazy('customer_management:customer_list') #redirect할 url 호출 
