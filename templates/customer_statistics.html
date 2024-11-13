@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Statistics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h2>고객 구매 통계 (최근 30일)</h2>
+    <p>총 판매액: ${{ total_sales }}</p>
+
+    <canvas id="customerPurchaseChart" width="400" height="200"></canvas>
+
+    <h3>최근 구매 내역</h3>
+    <ul>
+        {% for purchase in recent_purchases %}
+            <li>{{ purchase.customer.name }} - {{ purchase.product_name }} - ${{ purchase.amount }} on {{ purchase.date }}</li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        const labels = [
+            {% for purchase in recent_purchases %}
+                "{{ purchase.date }}",
+            {% endfor %}
+        ];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: '고객 구매 금액',
+                data: [
+                    {% for purchase in recent_purchases %}
+                        {{ purchase.amount }},
+                    {% endfor %}
+                ],
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        };
+        const config = {
+            type: 'line',
+            data: data,
+        };
+        new Chart(
+            document.getElementById('customerPurchaseChart'),
+            config
+        );
+    </script>
+</body>
+</html>
