@@ -11,10 +11,12 @@
     <div>
         <img src="{% static 'images/ikea_logo.png' %}" alt="Walmart Logo" class="Walmart-logo">
         <h2>고객 정보 리스트</h2>
-        <a href =  "{% url 'customer_management:customer_add' %}">➕</a>    
-        <a href =  "{% url 'customer_management:customer_statistics' %}">📈</a>
+        <div class="icon-container">
+            <a href="{% url 'customer_management:customer_statistics' %}">📈</a> <!-- 왼쪽 -->
+            <a href="{% url 'customer_management:customer_add' %}">╋</a> <!-- 오른쪽 -->
+        </div>
         <br>
-        <br>
+        
         <div class="table-container">
             <table>
                 <thead>
@@ -47,7 +49,7 @@
                         </td>
                         <td>
                             <a href =  "{% url 'customer_management:customer_edit' pk=customer.pk %}">✏️</a>
-                            <a href =  "{% url 'customer_management:customer_delete' pk=customer.pk %}">➖</a>
+                            <a href =  "{% url 'customer_management:customer_delete' pk=customer.pk %}">–</a>
                         </td>
 
                     </tr>

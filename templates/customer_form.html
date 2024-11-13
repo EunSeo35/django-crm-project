@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if object %}Edit{% else %}Add{% endif %} Customer</title>   
+    <title> 고객 추가/수정 페이지 </title>   
 </head>
 <body>
     <!-- 이케아 로고 추가 -->
     <img src="{% static 'images/ikea_logo.png' %}" alt="Walmart Logo" class="Walmart-logo">
     <div class="form-container">
-    <h2>{% if object %}Edit{% else %}Add{% endif %} Customer</h2>
+    <h2> 고객 {% if object %}수정{% else %}추가{% endif %}</h2>
         <form method="post" class="customer-form">
             {% csrf_token %}
             {{ form.as_p }}

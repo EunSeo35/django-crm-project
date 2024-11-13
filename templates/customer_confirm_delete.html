@@ -11,7 +11,7 @@
     <div class="delete-confirmation">
         <img src="{% static 'images/ikea_logo.png' %}" alt="Walmart Logo" class="Walmart-logo">
         <h2>회원정보 삭제</h2>
-        <div class="table-container">
+        <div class="delete-confirmation">
             <p>{{ object.name }}님의 회원정보를 삭제하시겠습니까?</p>
             <form method="post">
                 {% csrf_token %}
