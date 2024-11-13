@@ -16,6 +16,8 @@ class Customer(models.Model):
 class Purchase(models.Model):
     customer = models.ForeignKey(Customer, on_delete = models.CASCADE, related_name = 'purchases')
     product_name = models.CharField(max_length=100)
+    product_code = models.CharField(max_length=50,null=True, blank=True)
+    category = models.CharField(max_length=50,null=True, blank=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateField()
     

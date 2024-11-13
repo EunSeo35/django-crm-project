@@ -9,6 +9,6 @@ class CustomerAdmin(admin.ModelAdmin):
 
 @admin.register(Purchase)
 class PurchaseAdmin(admin.ModelAdmin):
-    list_display = ('customer', 'product_name', 'amount', 'date')
+    list_display = ('customer', 'product_name', 'product_code', 'category', 'amount', 'date')
     search_fields = ('customer_name', 'product_name')
     list_filter = ('date',)
