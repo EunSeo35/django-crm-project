@@ -19,7 +19,7 @@ body {
 
 /* 헤더 스타일 */
 h2 {
-    color: #0058a3;
+    color: #0071CE;
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
@@ -42,7 +42,7 @@ h2 {
 .customer-form label {
     display: block;
     margin-bottom: 5px;
-    color: #0058a3;
+    color: #0071CE;
 }
 
 .customer-form input[type="text"],
@@ -56,9 +56,17 @@ textarea {
     border-radius: 4px;
 }
 
+.delete-confirmation {
+    display: flex;
+    flex-direction: column;
+    justify-content: auto; /* 수직 중앙 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+    height: 100vh; /* 화면 전체 높이 */
+    text-align: center;
+}
 /* 버튼 공통 스타일 */
 .delete-confirmation button {
-    background-color: #0058a3;
+    background-color: #0071CE;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -70,21 +78,21 @@ textarea {
 }
 
 .delete-confirmation button:hover {
-    background-color: #0058a3;
+    background-color: #0071CE;
 }
 
 /* '네' 버튼 특별 스타일 */
 .delete-confirmation button[type="submit"] {
-    background-color: #0058a3;
+    background-color: #0071CE;
 }
 
 .delete-confirmation button[type="submit"]:hover {
-    background-color: #0058a3;
+    background-color: #0071CE;
 }
 
 /* 버튼 스타일 */
 .submit-btn, button[type="submit"], a {
-    background-color: #0058a3;
+    background-color: #0071CE;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -97,7 +105,7 @@ textarea {
 }
 
 .submit-btn:hover, button[type="submit"]:hover, a:hover {
-    background-color: #0058a3;
+    background-color: #0071CE;
 }
 
 /* 테이블 스타일 */
@@ -139,6 +147,14 @@ a[href*="customer_delete"] {
     padding: 5px 10px;
 }
 
+/* Flexbox로 양쪽 정렬 */
+.icon-container {
+    display: flex;
+    justify-content: space-between; /* 양쪽 끝으로 배치 */
+    align-items: center; /* 세로 가운데 정렬 */
+    margin-top: 20px;
+}
+
 /* 통계 페이지 스타일 */
 .statistics-container {
     max-width: 800px;
@@ -152,7 +168,7 @@ a[href*="customer_delete"] {
 .total-sales {
     font-size: 18px;
     font-weight: bold;
-    color: #0058a3;
+    color: #0071CE;
     margin-bottom: 20px;
 }
 
@@ -165,7 +181,7 @@ a[href*="customer_delete"] {
 }
 
 .recent-purchases h3 {
-    color: #0058a3;
+    color: #0071CE;
     margin-bottom: 10px;
 }
 
