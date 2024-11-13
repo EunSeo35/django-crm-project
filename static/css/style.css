@@ -31,7 +31,7 @@ h2 {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     max-width: 400px;
-    margin: 0 auto;
+    margin: 40px auto; /* 폼을 화면 중앙에 배치 */;
 }
 
 .customer-form div {
@@ -45,7 +45,10 @@ h2 {
 }
 
 .customer-form input[type="text"],
-.customer-form input[type="password"] {
+.customer-form input[type="email"],
+.customer-form input[type="tel"],
+.customer-form input[type="password"],
+textarea {
     width: 95%;
     padding: 8px;
     border: 1px solid #ddd;
