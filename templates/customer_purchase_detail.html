@@ -15,7 +15,9 @@
             <thead>
                 <tr>
                     <th>이름</th>
+                    <th>상품코드</th>
                     <th>상품명</th>
+                    <th>카테고리</th>
                     <th>수량</th>
                     <th>구매일자</th>
                 </tr>
@@ -24,7 +26,9 @@
                 {% for purchase in purchases %}
                 <tr>
                     <td>{{ purchase.customer }}</td>
+                    <td>{{purchase.product_code}}</td>
                     <td>{{ purchase.product_name }}</td>
+                    <td>{{ purchase.category }}</td>
                     <td>{{ purchase.amount|floatformat:0 }}</td>
                     <td>{{ purchase.date|date:"Y.m.d"}}</td>
                 </tr>
