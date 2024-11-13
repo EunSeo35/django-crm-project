@@ -52,6 +52,32 @@ h2 {
     border-radius: 4px;
 }
 
+/* 버튼 공통 스타일 */
+.delete-confirmation button {
+    background-color: #0058a3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin: 0 10px;
+}
+
+.delete-confirmation button:hover {
+    background-color: #003e75;
+}
+
+/* '네' 버튼 특별 스타일 */
+.delete-confirmation button[type="submit"] {
+    background-color: #ffdb00;
+}
+
+.delete-confirmation button[type="submit"]:hover {
+    background-color: #ffdb00;
+}
+
 /* 버튼 스타일 */
 .submit-btn, button[type="submit"], a {
     background-color: #0058a3;
@@ -107,6 +133,50 @@ a[href*="customer_delete"] {
     font-size: 20px;
     margin: 0 5px;
     padding: 5px 10px;
+}
+
+/* 통계 페이지 스타일 */
+.statistics-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.total-sales {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0058a3;
+    margin-bottom: 20px;
+}
+
+.chart-container {
+    margin-bottom: 30px;
+}
+
+.recent-purchases {
+    margin-top: 30px;
+}
+
+.recent-purchases h3 {
+    color: #0058a3;
+    margin-bottom: 10px;
+}
+
+.recent-purchases ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recent-purchases li {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.recent-purchases li:last-child {
+    border-bottom: none;
 }
 
 /* 반응형 디자인 */

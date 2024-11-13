@@ -1,25 +1,33 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales Statistics</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h2>고객 구매 통계 (최근 30일)</h2>
-    <p>총 판매액: ${{ total_sales }}</p>
+    <div class="statistics-container">
+        <img src="{% static 'images/ikea_logo.png' %}" alt="IKEA Logo" class="ikea-logo">
+        <h2>고객 구매 통계 (최근 30일)</h2>
+        <p class="total-sales">총 판매액: ${{ total_sales }}</p>
 
-    <canvas id="customerPurchaseChart" width="400" height="200"></canvas>
+        <div class="chart-container">
+            <canvas id ="customerPurchaseChart" width="400" height="200"></canvas>
+        </div>
 
-    <h3>최근 구매 내역</h3>
-    <ul>
-        {% for purchase in recent_purchases %}
-            <li>{{ purchase.customer.name }} - {{ purchase.product_name }} - ${{ purchase.amount }} on {{ purchase.date }}</li>
-        {% endfor %}
-    </ul>
-
+        <div class="recent-purchases">
+            <h3>최근 구매 내역</h3>
+            <ul>
+                {% for purchase in recent_purchases %}
+                    <li>{{ purchase.customer.name }} - {{ purchase.product_name }} - ${{ purchase.amount }} on {{ purchase.date }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
     <script>
         const labels = [
             {% for purchase in recent_purchases %}

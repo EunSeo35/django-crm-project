@@ -1,17 +1,24 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Customer</title>
 </head>
 <body>
-    <h2>회원정보 삭제</h2>
-    <p>{{ object.name }}님의 회원정보를 삭제하시겠습니까?</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">네</button>
-        <button type="button" onclick="location.href='{% url 'customer_management:customer_list' %}'">아니오</button>
-    </form>
+    <div class="delete-confirmation">
+        <img src="{% static 'images/ikea_logo.png' %}" alt="IKEA Logo" class="ikea-logo">
+        <h2>회원정보 삭제</h2>
+        <div class="table-container">
+            <p>{{ object.name }}님의 회원정보를 삭제하시겠습니까?</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit">네</button>
+                <button type="button" onclick="location.href='{% url 'customer_management:customer_list' %}'">아니오</button>
+        </div>
+        </form>
+    </div>
 </body>
 </html>
