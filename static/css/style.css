@@ -8,12 +8,13 @@ body {
     padding: 20px;
 }
 
-/* 이케아 로고 스타일 */
-.ikea-logo {
+/* 로고 스타일 */
+.Walmart-logo {
     display: block;
-    width: 100px;
+    width: 200px;
     height: auto;
-    margin: 20px auto;
+    margin: 0 auto 10px auto;
+
 }
 
 /* 헤더 스타일 */
