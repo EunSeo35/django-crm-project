@@ -3,7 +3,7 @@ from .models import Customer, Purchase
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'phone', 'created_at')
+    list_display = ('name','gender', 'age','email', 'phone','address' ,'created_at')
     search_fields = ('name', 'email')
     list_filter = ('created_at',)
 
