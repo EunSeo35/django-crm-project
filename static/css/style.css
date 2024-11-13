@@ -46,7 +46,7 @@ h2 {
 
 .customer-form input[type="text"],
 .customer-form input[type="password"] {
-    width: 100%;
+    width: 95%;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -66,16 +66,16 @@ h2 {
 }
 
 .delete-confirmation button:hover {
-    background-color: #003e75;
+    background-color: #0058a3;
 }
 
 /* '네' 버튼 특별 스타일 */
 .delete-confirmation button[type="submit"] {
-    background-color: #ffdb00;
+    background-color: #0058a3;
 }
 
 .delete-confirmation button[type="submit"]:hover {
-    background-color: #ffdb00;
+    background-color: #0058a3;
 }
 
 /* 버튼 스타일 */
@@ -93,7 +93,7 @@ h2 {
 }
 
 .submit-btn:hover, button[type="submit"]:hover, a:hover {
-    background-color: #003e75;
+    background-color: #0058a3;
 }
 
 /* 테이블 스타일 */
