@@ -29,7 +29,6 @@ class CustomerDeleteView(DeleteView):
     template_name = 'customer_confirm_delete.html'
     success_url = reverse_lazy('customer_management:customer_list')
     
-    
 class CustomerPurchaseDetailView(DetailView):
     model = Customer #고객이 pk
     template_name = 'customer_purchase_detail.html'

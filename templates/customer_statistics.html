@@ -1,14 +1,22 @@
+<<<<<<< HEAD
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+=======
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+>>>>>>> feature/stats
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales Statistics</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
     <div class="statistics-container">
         <img src="{% static 'images/ikea_logo.png' %}" alt="Walmart Logo" class="Walmart-logo">
         <h2>고객 구매 통계 (최근 30일)</h2>
@@ -28,6 +36,20 @@
         </div>
     </div>
     
+=======
+    <h2>고객 구매 통계 (최근 30일)</h2>
+    <p>총 판매액: ${{ total_sales }}</p>
+
+    <canvas id="customerPurchaseChart" width="400" height="200"></canvas>
+
+    <h3>최근 구매 내역</h3>
+    <ul>
+        {% for purchase in recent_purchases %}
+            <li>{{ purchase.customer.name }} - {{ purchase.product_name }} - ${{ purchase.amount }} on {{ purchase.date }}</li>
+        {% endfor %}
+    </ul>
+
+>>>>>>> feature/stats
     <script>
         const labels = [
             {% for purchase in recent_purchases %}
