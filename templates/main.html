@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main</title>
+    <title>Main 로그인 페이지 </title>
 </head>
 <body>
     <div>
@@ -19,7 +19,12 @@
                 <label for="password">비밀번호</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button type="button" onclick="location.href='{% url 'customer_management:customer_list' %}'"class="submit-btn">로그인</button>
+
+            {% if error %}
+            <p style="color: red;">{{ error }}</p> 
+            {% endif %}
+
+            <button type="submit" class="submit-btn">로그인</button>
         </form>
     </div>
 <body>
