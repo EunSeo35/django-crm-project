@@ -22,6 +22,7 @@
                         <th>전화번호</th>
                         <th>주소</th>
                         <th>가입일</th>
+                        <th>구매내역</th>
                         <th>상태</th>
                     </tr>
                 </thead>
@@ -35,9 +36,13 @@
                         <td>{{ customer.address }}</td>
                         <td>{{ customer.created_at }}</td>
                         <td>
+                            <a>🗒️</a>
+                        </td>
+                        <td>
                             <a href =  "{% url 'customer_management:customer_edit' pk=customer.pk %}">✏️</a>
                             <a href =  "{% url 'customer_management:customer_delete' pk=customer.pk %}">➖</a>
                         </td>
+
                     </tr>
                     {% endfor %}
                 </tbody>
