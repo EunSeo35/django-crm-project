@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DeleteView, UpdateView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView #장고에서 제공 
 from .models import Customer, Purchase
 
 class CustomerListView(ListView):
@@ -25,4 +25,14 @@ class CustomerDeleteView(DeleteView):
     template_name = 'customer_confirm_delete.html'
     success_url = reverse_lazy('customer_management:customer_list')
     
-
+    
+class CustomerPurchaseDetailView(DetailView):
+    model = Customer #고객이 pk
+    template_name = 'customer_purchase_detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        customer = self.get_object()
+        context['purchases'] = Purchase.objects.filter(customer=customer)
+        return context
+    
