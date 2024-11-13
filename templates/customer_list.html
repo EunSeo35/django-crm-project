@@ -36,7 +36,7 @@
                         <td>{{ customer.address }}</td>
                         <td>{{ customer.created_at }}</td>
                         <td>
-                            <a>🗒️</a>
+                            <a href =  "{% url 'customer_management:customer_purchase_detail' pk=customer.pk %}">🗒️</a>
                         </td>
                         <td>
                             <a href =  "{% url 'customer_management:customer_edit' pk=customer.pk %}">✏️</a>
