@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CustomerListView, CustomerCreateView, CustomerUpdateView ,CustomerDeleteView
+from .views import CustomerListView, CustomerCreateView, CustomerUpdateView ,CustomerDeleteView, customer_statistics
 
 app_name = 'customer_management'
 
