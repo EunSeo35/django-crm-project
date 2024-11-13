@@ -36,7 +36,7 @@
                         <td>{{ customer.email }}</td>
                         <td>{{ customer.phone }}</td>
                         <td>{{ customer.address }}</td>
-                        <td>{{ customer.created_at|date:"Y년 m월 d일 H시 i분" }}</td>
+                        <td>{{ customer.created_at|date:"Y.m.d"}}</td>
                         <td>
                             <a href =  "{% url 'customer_management:customer_purchase_detail' pk=customer.pk %}">🗒️</a>
                         </td>
