@@ -5,8 +5,9 @@ from .models import Customer, Purchase
 from django.utils import timezone
 from django.db.models import Sum
 from datetime import timedelta, date
+from django.contrib.auth.mixins import LoginRequiredMixin #로그인 권한 부여 
 
-class CustomerListView(ListView):
+class CustomerListView(LoginRequiredMixin,ListView): 
     model = Customer
     template_name = 'customer_list.html'
     context_object_name = 'customers'
