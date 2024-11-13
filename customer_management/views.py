@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView #장고에서 제공 
 from .models import Customer, Purchase
+from django.utils import timezone
+from django.db.models import Sum
+from datetime import timedelta, date
 
 class CustomerListView(ListView):
     model = Customer
@@ -35,4 +38,16 @@ class CustomerPurchaseDetailView(DetailView):
         customer = self.get_object()
         context['purchases'] = Purchase.objects.filter(customer=customer)
         return context
-    
+
+def customer_statistics(request):
+    today = timezone.now().date()
+    last_30_days = today - timedelta(days=30)
+
+    # 지난 30일 동안의 구매 총합
+    recent_purchases = Purchase.objects.filter(date__gte=last_30_days)
+    total_sales = recent_purchases.aggregate(Sum('amount'))['amount__sum'] or 0
+
+    return render(request, 'customer_statistics.html', {
+        'total_sales': total_sales,
+        'recent_purchases': recent_purchases,
+    })
