@@ -31,7 +31,7 @@
 <p align="justify">24.11.12일 ~ 24.11.14일</p>
 <br>
 
-## 2. 주요 기능
+## ✏ <a href="https://docs.google.com/spreadsheets/d/1a0r3o8QY3PclaxvRsB4ok0Kt0hzDWVog4dOZZKQw5NI/edit?gid=132544620#gid=132544620" alt=""> API 명세
 - 관리자 로그인 권한: 관리자는 로그인 후 고객 관리 및 통계 대시보드를 이용할 수 있습니다.
 - 고객 목록 조회: 시스템에 등록된 모든 고객 목록을 조회할 수 있습니다.
 - 고객 추가, 수정, 삭제: 고객의 정보를 추가, 수정, 삭제할 수 있습니다.
@@ -43,11 +43,9 @@
 
 <br>
 
-## 3. 화면 구상도
+## 🖥️ <a href="https://whimsical.com/crm-project-JVrvnk65BKwgijV1WEttbN" alt=""> 화면 구상도
+<img src="https://github.com/user-attachments/assets/4a31752c-a1e8-4391-9ad6-f643e09177b5" alt="image" width="600" height="400" >
 
-![image](https://github.com/user-attachments/assets/4a31752c-a1e8-4391-9ad6-f643e09177b5)
-
-화면 구상도 링크 : [https://whimsical.com/crm-project-JVrvnk65BKwgijV1WEttbN]
 
 <br>
 
