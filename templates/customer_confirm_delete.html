@@ -10,13 +10,13 @@
 <body>
     <div class="delete-confirmation">
         <img src="{% static 'images/ikea_logo.png' %}" alt="Walmart Logo" class="Walmart-logo">
-        <h2>회원정보 삭제</h2>
+        <h2>Delete Customer Information</h2>
         <div class="delete-confirmation">
-            <p>{{ object.name }}님의 회원정보를 삭제하시겠습니까?</p>
+            <p>Are you sure you want to delete the account of '{{ object.name }}'?</p>
             <form method="post">
                 {% csrf_token %}
-                <button type="submit">네</button>
-                <button type="button" onclick="location.href='{% url 'customer_management:customer_list' %}'">아니오</button>
+                <button type="submit">Yes</button>
+                <button type="button" onclick="location.href='{% url 'customer_management:customer_list' %}'">No</button>
         </div>
         </form>
     </div>

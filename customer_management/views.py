@@ -6,6 +6,8 @@ from django.utils import timezone
 from django.db.models import Sum
 from datetime import timedelta, date
 from django.contrib.auth.mixins import LoginRequiredMixin #로그인 권한 부여 
+from django.db.models.functions import TruncMonth, TruncYear 
+from django.db import models
 
 class CustomerListView(LoginRequiredMixin,ListView): 
     model = Customer
@@ -41,13 +43,64 @@ class CustomerPurchaseDetailView(DetailView):
 
 def customer_statistics(request):
     today = timezone.now().date()
-    last_30_days = today - timedelta(days=30)
 
-    # 지난 30일 동안의 구매 총합
-    recent_purchases = Purchase.objects.filter(date__gte=last_30_days)
-    total_sales = recent_purchases.aggregate(Sum('amount'))['amount__sum'] or 0
+    # 기본 시작 날짜와 종료 날짜를 설정 (오늘 날짜 기준)
+    start_date = today - timedelta(days=30)  # 기본값: 최근 30일
+    end_date = today  # 기본값: 오늘
 
+    # URL에서 시작 날짜와 종료 날짜를 받으면 이를 사용
+    if 'start_date' in request.GET and 'end_date' in request.GET:
+        try:
+            start_date = timezone.datetime.strptime(request.GET['start_date'], '%Y-%m-%d').date()
+            end_date = timezone.datetime.strptime(request.GET['end_date'], '%Y-%m-%d').date()
+        except ValueError:
+            # 잘못된 날짜 형식이 들어왔을 경우 예외 처리 (기본값 유지)
+            pass
+
+    # 고객 수
+    total_customers = Customer.objects.count()
+
+    # 선택된 날짜 범위 동안의 총 판매액
+    sales = Purchase.objects.filter(date__gte=start_date, date__lte=end_date).aggregate(Sum('amount'))['amount__sum'] or 0
+
+    # 월별 판매액
+    monthly_sales = Purchase.objects.filter(date__gte=start_date, date__lte=end_date) \
+        .annotate(month=models.functions.TruncMonth('date')) \
+        .values('month') \
+        .annotate(total_sales=Sum('amount')) \
+        .order_by('month')
+
+    # 연도별 판매액
+    yearly_sales = Purchase.objects.filter(date__gte=start_date, date__lte=end_date) \
+        .annotate(year=models.functions.TruncYear('date')) \
+        .values('year') \
+        .annotate(total_sales=Sum('amount')) \
+        .order_by('year')
+
+    # 카테고리별 판매액
+    category_sales = Purchase.objects.values('category') \
+        .annotate(total_sales=Sum('amount')) \
+        .order_by('category')
+
+    # 나이별 판매액
+    age_sales = Purchase.objects.values('customer__age') \
+        .annotate(total_sales=Sum('amount')) \
+        .order_by('customer__age')
+
+    # 성별별 판매액
+    gender_sales = Purchase.objects.values('customer__gender') \
+        .annotate(total_sales=Sum('amount')) \
+        .order_by('customer__gender')
+    
     return render(request, 'customer_statistics.html', {
-        'total_sales': total_sales,
-        'recent_purchases': recent_purchases,
+        # 대시보드 데이터
+        'total_customers': total_customers,
+        'sales': sales,
+        'monthly_sales': monthly_sales,
+        'yearly_sales': yearly_sales,
+        'category_sales': category_sales,
+        'age_sales':age_sales,
+        'gender_sales':gender_sales,
+        'start_date': start_date,
+        'end_date': end_date,
     })

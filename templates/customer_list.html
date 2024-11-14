@@ -5,12 +5,12 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer List</title>
+    <title>Customer Information List</title>
 </head>
 <body>
     <div>
         <img src="{% static 'images/ikea_logo.png' %}" alt="Walmart Logo" class="Walmart-logo">
-        <h2>고객 정보 리스트</h2>
+        <h2>Customer Information List</h2>
         <div class="icon-container">
             <a href="{% url 'customer_management:customer_statistics' %}">📈</a> <!-- 왼쪽 -->
             <a href="{% url 'customer_management:customer_add' %}">╋</a> <!-- 오른쪽 -->
@@ -22,15 +22,15 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>이름</th>
-                        <th>성별</th>
-                        <th>나이</th>
-                        <th>이메일</th>
-                        <th>전화번호</th>
-                        <th>주소</th>
-                        <th>가입일</th>
-                        <th>구매내역</th>
-                        <th>상태</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Date Joined</th>
+                        <th>Purchase History</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
