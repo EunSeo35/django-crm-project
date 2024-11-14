@@ -220,6 +220,18 @@ textarea,
 .submit-btn:hover, button[type="submit"]:hover, a:hover {
     background-color: #0071CE;
 }
+
+.sales-table-container {
+    width: 50%;                /* 컨테이너 너비를 60%로 설정 */
+    max-width: 1200px;         /* 최대 너비를 1200px로 설정 */
+    overflow-x: auto;          /* 테이블이 너무 넓으면 가로 스크롤을 표시 */
+    margin: 20px auto;         /* 상하좌우 여백을 자동으로 설정 (위 아래 여백 40px, 수평 중앙 정렬) */
+    padding: 20px;             /* 컨테이너 내부에 20px 여백을 추가 */
+    text-align: center;        /* 테이블의 내용을 수평으로 중앙 정렬 */
+    border-collapse: collapse; /* 테이블의 테두리 합침 */
+}
+
+
 /* 성별별 판매액 테이블과 판매액 표시를 가로로 정렬 */
 .gender-sales-container {
     display: flex;
@@ -241,19 +253,6 @@ textarea,
     margin: auto;
 }
 
-.gender-sales-summary {
-    width: 20%;
-    max-width: 45%;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: 60px;
-    text-align: center;
-    margin: auto;
-}
 /* 테이블 스타일 */
 .data-container {
     display: flex;
@@ -289,18 +288,7 @@ textarea,
     border-collapse: collapse;
     margin: auto;
 }
-.product-sales-summary {
-    width: 20%;
-    max-width: 20%;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin: auto;
-}
+
 table {
     width: 100%;
     border-collapse: collapse;

@@ -12,6 +12,7 @@ from django.http import JsonResponse
 import pandas as pd
 from django.db.models import IntegerField, F
 from django.db.models.functions import Cast
+from django.db.models.functions import ExtractYear
 
 class CustomerListView(LoginRequiredMixin,ListView): 
     model = Customer
@@ -76,7 +77,7 @@ def customer_statistics(request):
 
     # 연도별 판매액
     yearly_sales = Purchase.objects.filter(date__gte=start_date, date__lte=end_date) \
-        .annotate(year=models.functions.TruncYear('date')) \
+        .annotate(year=ExtractYear('date')) \
         .values('year') \
         .annotate(total_sales=Sum('amount')) \
         .order_by('year')
