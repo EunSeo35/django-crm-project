@@ -38,15 +38,15 @@
         <br>
 
         <!-- 월별 판매액 차트 -->
-        <h3>Monthly Sales</h3>
+        <h3>🛍️ Monthly Sales</h3>
         <canvas id="monthlySalesChart" width="800" height="400"></canvas>
 
         <!-- 연도별 판매액 차트 -->
-        <h3>Yearly Sales</h3>
+        <h3>🛍️ Yearly Sales</h3>
         <canvas id="yearlySalesChart" width="800" height="400"></canvas>
 
         <!-- 나이별 판매액 테이블 -->
-        <h3>Sales by Age</h3>
+        <h3>🛍️ Sales by Age</h3>
         <div class="table-container">
             <table>
                 <thead>
@@ -65,9 +65,20 @@
                 </tbody>
             </table>
         </div>
-
+        <!-- 나이별 최소 및 최대 판매액 표시 -->
+        <div class="sales-summary">
+            {% if max_sales_age %}
+                <h3>🔼 Highest Sales by Age</h3>
+                <p>Age {{ max_sales_age.customer__age }} - ${{ max_sales_age.total_sales }}</p>
+            {% endif %}
+            {% if min_sales_age %}
+                <h3>🔽 Lowest Sales by Age</h3> 
+                <p>Age {{ min_sales_age.customer__age }} with ${{ min_sales_age.total_sales }}</p>
+            {% endif %}
+        </div>
+        <br>
         <!-- 성별별 판매액 테이블 -->
-        <h3>Sales by Gender</h3>
+        <h3>🛍️ Sales by Gender</h3>
         <div class="table-container">
             <table>
                 <thead>
@@ -94,9 +105,20 @@
                 </tbody>
             </table>
         </div>
-
+        <!-- 성별별 최소 및 최대 판매액 표시 -->
+        <div class="sales-summary">
+            {% if max_sales_gender %}
+                <h3>🔼 Highest Sales by Gender</h3>
+                <p>{{ max_sales_gender.customer__gender }} - ${{ max_sales_gender.total_sales }}</p>
+            {% endif %}
+            {% if min_sales_gender %}
+                <h3>🔽 Lowest Sales by Gender</h3> 
+                <p>{{ min_sales_gender.customer__gender }} - ${{ min_sales_gender.total_sales }}</p>
+            {% endif %}
+        </div>        
+        <br>
         <!-- 카테고리별 판매액 테이블 -->
-        <h3>Sales by Product Category</h3>
+        <h3>🛍️ Sales by Product Category</h3>
         <div class="table-container">
             <table>
                 <thead>
@@ -115,7 +137,17 @@
                 </tbody>
             </table>
         </div>
-
+        <!-- 카테고리별 최소 및 최대 판매액 표시 -->
+        <div class="sales-summary">
+            {% if max_sales_category %}
+                <h3>🔼 Highest Sales by Category</h3>
+                <p>Category{{ max_sales_category.category }} - ${{ max_sales_category.total_sales }}</p>
+            {% endif %}
+            {% if min_sales_category %}
+                <h3>🔽 Lowest Sales by Category</h3> 
+                <p>Category{{ min_sales_category.category }} - ${{ min_sales_category.total_sales }}</p>
+            {% endif %}
+        </div>      
     </div>
 
     <script>

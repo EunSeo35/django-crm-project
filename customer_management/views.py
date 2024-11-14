@@ -10,6 +10,8 @@ from django.db.models.functions import TruncMonth, TruncYear
 from django.db import models
 from django.http import JsonResponse
 import pandas as pd
+from django.db.models import IntegerField, F
+from django.db.models.functions import Cast
 
 class CustomerListView(LoginRequiredMixin,ListView): 
     model = Customer
@@ -82,18 +84,39 @@ def customer_statistics(request):
     # 카테고리별 판매액
     category_sales = Purchase.objects.values('category') \
         .annotate(total_sales=Sum('amount')) \
-        .order_by('category')
+        .order_by(Cast('category', IntegerField()))  # category를 숫자로 변환하여 정렬
+    
+    # 카테고리별 최소 및 최대 판매액 계산
+    if category_sales:
+        min_sales_category = min(category_sales, key=lambda x: x['total_sales'])
+        max_sales_category = max(category_sales, key=lambda x: x['total_sales'])
+    else:
+        min_sales_category = max_sales_category = None
 
     # 나이별 판매액
     age_sales = Purchase.objects.values('customer__age') \
         .annotate(total_sales=Sum('amount')) \
         .order_by('customer__age')
+    
+    # 나이별 최소/최대 판매액 계산
+    if age_sales:
+        min_sales_age = min(age_sales, key=lambda x: x['total_sales'])
+        max_sales_age = max(age_sales, key=lambda x: x['total_sales'])
+    else:
+        min_sales_age = max_sales_age = None  
 
     # 성별별 판매액
     gender_sales = Purchase.objects.values('customer__gender') \
         .annotate(total_sales=Sum('amount')) \
         .order_by('customer__gender')
-    
+
+    # 성별별 최소/최대 판매액 계산
+    if gender_sales:
+        min_sales_gender = min(gender_sales, key=lambda x: x['total_sales'])
+        max_sales_gender = max(gender_sales, key=lambda x: x['total_sales'])
+    else:
+        min_sales_gender = max_sales_gender = None
+        
     return render(request, 'customer_statistics.html', {
         # 대시보드 데이터
         'total_customers': total_customers,
@@ -101,8 +124,14 @@ def customer_statistics(request):
         'monthly_sales': monthly_sales,
         'yearly_sales': yearly_sales,
         'category_sales': category_sales,
-        'age_sales':age_sales,
-        'gender_sales':gender_sales,
+        'age_sales': age_sales,
+        'gender_sales': gender_sales,
+        'min_sales_category': min_sales_category,
+        'max_sales_category': max_sales_category,
+        'min_sales_age': min_sales_age,
+        'max_sales_age': max_sales_age,
+        'min_sales_gender': min_sales_gender,
+        'max_sales_gender': max_sales_gender,
         'start_date': start_date,
         'end_date': end_date,
     })
