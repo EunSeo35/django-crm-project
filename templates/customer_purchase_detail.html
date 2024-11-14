@@ -5,21 +5,21 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>구매내역 리스트</title>
+    <title>Purchase History List</title>
 </head>
 <div>
     <img src="{% static 'images/ikea_logo.png' %}" alt="Walmart Logo" class="Walmart-logo">
-    <h2>구매 리스트</h2>
+    <h2>Purchase History List</h2>
     <div class="table-container">
         <table>
             <thead>
                 <tr>
-                    <th>이름</th>
-                    <th>상품코드</th>
-                    <th>상품명</th>
-                    <th>카테고리</th>
-                    <th>구매금액</th>
-                    <th>구매일자</th>
+                    <th>Customer Name</th>
+                    <th>Product Code</th>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Purchase Amount</th>
+                    <th>Purchase Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,12 +29,12 @@
                     <td>{{purchase.product_code}}</td>
                     <td>{{ purchase.product_name }}</td>
                     <td>{{ purchase.category }}</td>
-                    <td>{{ purchase.amount|floatformat:0 }}</td>
+                    <td>${{ purchase.amount|floatformat:0 }}</td>
                     <td>{{ purchase.date|date:"Y.m.d"}}</td>
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="4">구매 내역이 없습니다.</td>
+                    <td colspan="4">No purchase records available</td>
                 </tr>
                 {% endfor %}
             </tbody>
