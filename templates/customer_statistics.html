@@ -73,7 +73,7 @@
             {% endif %}
             {% if min_sales_age %}
                 <h3>🔽 Lowest Sales by Age</h3> 
-                <p>Age {{ min_sales_age.customer__age }} with ${{ min_sales_age.total_sales }}</p>
+                <p>Age {{ min_sales_age.customer__age }} - ${{ min_sales_age.total_sales }}</p>
             {% endif %}
         </div>
         <br>

@@ -1,14 +1,37 @@
 # 🛍 Walmart 고객 관리 페이지 프로젝트
+<img src="https://github.com/user-attachments/assets/472e79e8-fb84-467e-93e0-3e8b64f56aed" alt="Walmart Canada Store" width="600" height="400" >
 
-![walmart](https://github.com/user-attachments/assets/472e79e8-fb84-467e-93e0-3e8b64f56aed)
+
+## Index
+
+- [Introduction](#simple-description)
+- [Overview](#overvie)
+- [Contributing](#contributing)
 
 
-## 1. 프로젝트 개요
-이 프로젝트는 Django 기반으로 월마트 고객 관리 및 판매 데이터를 분석하는 웹 페이지입니다. 고객의 정보를 관리하고, 구매 내역을 조회 및 분석하며, 판매 통계를 시각화하는 기능을 제공합니다.
 
+## 💻 프로젝트 소개
+<p align="justify"> 고객 관리와 판매 데이터 분석을 위한 서비스 </p>
+
+**컨셉**: 월마트  <br>
+**이유**: 실제 고객 관리 페이지를 구현하기 위해 캐글의 월마트 데이터를 활용했다.   <br>
+**데이터 출처**: [Kaggle](https://www.kaggle.com/datasets/devarajv88/walmart-sales-dataset) <br>
+
+
+## 👩🏻‍💻 팀원
+<p>
+<a href="https://github.com/EunSeo35">
+    <img src="https://avatars.githubusercontent.com/EunSeo35" width="90">
+</a>
+<a href="https://github.com/selina7704">
+    <img src="https://avatars.githubusercontent.com/selina7704" width="90">
+
+
+## 🗓️ 개발 기간
+<p align="justify">24.11.12일 ~ 24.11.14일</p>
 <br>
 
-## 2. 주요 기능
+## ✏ <a href="https://docs.google.com/spreadsheets/d/1a0r3o8QY3PclaxvRsB4ok0Kt0hzDWVog4dOZZKQw5NI/edit?gid=132544620#gid=132544620" alt=""> API 명세
 - 관리자 로그인 권한: 관리자는 로그인 후 고객 관리 및 통계 대시보드를 이용할 수 있습니다.
 - 고객 목록 조회: 시스템에 등록된 모든 고객 목록을 조회할 수 있습니다.
 - 고객 추가, 수정, 삭제: 고객의 정보를 추가, 수정, 삭제할 수 있습니다.
@@ -20,11 +43,9 @@
 
 <br>
 
-## 3. 화면 구상도
+## 🖥️ <a href="https://whimsical.com/crm-project-JVrvnk65BKwgijV1WEttbN" alt=""> 화면 구상도
+<img src="https://github.com/user-attachments/assets/4a31752c-a1e8-4391-9ad6-f643e09177b5" alt="image" width="600" height="400" >
 
-![image](https://github.com/user-attachments/assets/4a31752c-a1e8-4391-9ad6-f643e09177b5)
-
-화면 구상도 링크 : [https://whimsical.com/crm-project-JVrvnk65BKwgijV1WEttbN]
 
 <br>
 
@@ -50,4 +71,8 @@
 
 ## 6. 프로젝트 링크
 [https://github.com/EunSeo35/django-crm-project]
+
+
+
+
 
