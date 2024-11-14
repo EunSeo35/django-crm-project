@@ -1,6 +1,6 @@
 # 🛍 Walmart 고객 관리 페이지 프로젝트
+<img src="https://github.com/user-attachments/assets/472e79e8-fb84-467e-93e0-3e8b64f56aed" alt="Walmart Canada Store" width="600" height="400" >
 
-![walmart](https://github.com/user-attachments/assets/472e79e8-fb84-467e-93e0-3e8b64f56aed)
 
 ## Index
 
@@ -10,9 +10,25 @@
 
 
 
-## 1. 프로젝트 개요
-이 프로젝트는 Django 기반으로 월마트 고객 관리 및 판매 데이터를 분석하는 웹 페이지입니다. 고객의 정보를 관리하고, 구매 내역을 조회 및 분석하며, 판매 통계를 시각화하는 기능을 제공합니다.
+## 💻 프로젝트 소개
+<p align="justify"> 고객 관리와 판매 데이터 분석을 위한 서비스 </p>
 
+**컨셉**: 월마트  <br>
+**이유**: 실제 고객 관리 페이지를 구현하기 위해 캐글의 월마트 데이터를 활용했다.   <br>
+**데이터 출처**: [Kaggle](https://www.kaggle.com/datasets/devarajv88/walmart-sales-dataset) <br>
+
+
+## 👩🏻‍💻 팀원
+<p>
+<a href="https://github.com/EunSeo35">
+    <img src="https://avatars.githubusercontent.com/EunSeo35" width="90">
+</a>
+<a href="https://github.com/selina7704">
+    <img src="https://avatars.githubusercontent.com/selina7704" width="90">
+
+
+## 🗓️ 개발 기간
+<p align="justify">24.11.12일 ~ 24.11.14일</p>
 <br>
 
 ## 2. 주요 기능
@@ -59,11 +75,6 @@
 [https://github.com/EunSeo35/django-crm-project]
 
 
-## Contributing
-<p>
-<a href="https://github.com/EunSeo35">
-    <img src="https://avatars.githubusercontent.com/EunSeo35" width="90">
-</a>
-<a href="https://github.com/selina7704">
-    <img src="https://avatars.githubusercontent.com/selina7704" width="90">
+
+
 
