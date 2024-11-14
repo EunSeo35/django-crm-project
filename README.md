@@ -19,6 +19,7 @@
   - 분석 결과를 차트로 시각화하여 데이터 직관적으로 제공
 <br>
 <br>
+
 ## 3. 화면 구상도
 
 ![image](https://github.com/user-attachments/assets/4a31752c-a1e8-4391-9ad6-f643e09177b5)
@@ -26,6 +27,7 @@
 화면 구상도 링크 : [https://whimsical.com/crm-project-JVrvnk65BKwgijV1WEttbN]
 <br>
 <br>
+
 ## 4. 기술 스택
 - 프레임워크: Django
 - 데이터베이스: SQLite
@@ -34,6 +36,7 @@
 - 기타: Python
 <br>
 <br>
+
 ## 5. 프로젝트 링크
 [https://github.com/EunSeo35/django-crm-project]
 
