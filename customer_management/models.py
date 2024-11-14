@@ -6,16 +6,16 @@ from django.db import models
 class Customer(models.Model):
     
     GENDER_CHOICES = [
-        ('남', '남'),
-        ('여', '여'),
+        ('M', 'Male'),
+        ('F', 'Female'),
     ]
     
     AGE_CHOICES = [
-        ('10대', '10대'),
-        ('20대', '20대'),
-        ('30대', '30대'),
-        ('40대', '40대'),
-        ('50대 이상+', '50대 이상'),
+        ('10s', '10s'),
+        ('20s', '20s'),
+        ('30s', '30s'),
+        ('40s', '40s'),
+        ('50s+', '50s+'),
     ]
     
     name = models.CharField(max_length=50)
@@ -32,18 +32,18 @@ class Customer(models.Model):
 class Purchase(models.Model):
     
     purchase_choices = [
-        ('1', '카테고리 1'),
-        ('2', '카테고리 2'),
-        ('3', '카테고리 3'),
-        ('4', '카테고리 4'),
-        ('5', '카테고리 5'),
-        ('6', '카테고리 6'),
-        ('7', '카테고리 7'),
-        ('8', '카테고리 8'),
-        ('9', '카테고리 9'),
-        ('10', '카테고리 10'),
-        ('11', '카테고리 11'),
-        ('12', '카테고리 12'),  ]   
+        ('1', 'category 1'),
+        ('2', 'category 2'),
+        ('3', 'category 3'),
+        ('4', 'category 4'),
+        ('5', 'category 5'),
+        ('6', 'category 6'),
+        ('7', 'category 7'),
+        ('8', 'category 8'),
+        ('9', 'category 9'),
+        ('10', 'category 10'),
+        ('11', 'category 11'),
+        ('12', 'category 12'),  ]   
         
     customer = models.ForeignKey(Customer, on_delete = models.CASCADE, related_name = 'purchases')
     product_name = models.CharField(max_length=100)
