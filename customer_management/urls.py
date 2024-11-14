@@ -1,5 +1,7 @@
 from django.urls import path
 from .views import CustomerListView, CustomerCreateView, CustomerUpdateView ,CustomerDeleteView,CustomerPurchaseDetailView, customer_statistics
+from . import views
+
 
 app_name = 'customer_management'
 
@@ -10,4 +12,5 @@ urlpatterns = [
     path('<int:pk>/delete/', CustomerDeleteView.as_view(), name='customer_delete'),
     path('<int:pk>/purchase_detail/', CustomerPurchaseDetailView.as_view(), name='customer_purchase_detail'),
     path('statistics/', customer_statistics, name='customer_statistics'),
+    path('csv/', views.import_csv, name='import_csv'),
 ]
