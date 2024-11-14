@@ -15,6 +15,6 @@ def main(request):
             return redirect('customer_management:customer_list')
         
         else: 
-            return render(request, 'main.html',{'error': '아이디 또는 비밀번호가 잘못되었습니다.'})
+            return render(request, 'main.html',{'error': 'The username or password is incorrect.'})
     return render(request, "main.html")
 
