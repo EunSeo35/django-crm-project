@@ -16,8 +16,8 @@
   - 분석 결과를 차트로 시각화하여 데이터 직관적으로 제공
  
 ## 3. 기술 스택
-프레임워크: Django
-데이터베이스: SQLite
-프론트엔드: HTML, CSS
-차트 시각화: Chart.js
-기타: Python
+- 프레임워크: Django
+- 데이터베이스: SQLite
+- 프론트엔드: HTML, CSS
+- 차트 시각화: Chart.js
+- 기타: Python
