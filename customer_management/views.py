@@ -4,10 +4,12 @@ from django.views.generic import ListView, CreateView, DeleteView, UpdateView, D
 from .models import Customer, Purchase
 from django.utils import timezone
 from django.db.models import Sum
-from datetime import timedelta, date
+from datetime import timedelta, date, datetime
 from django.contrib.auth.mixins import LoginRequiredMixin #로그인 권한 부여 
 from django.db.models.functions import TruncMonth, TruncYear 
 from django.db import models
+from django.http import JsonResponse
+import pandas as pd
 
 class CustomerListView(LoginRequiredMixin,ListView): 
     model = Customer
@@ -104,3 +106,56 @@ def customer_statistics(request):
         'start_date': start_date,
         'end_date': end_date,
     })
+    
+    
+def import_csv(request):
+    csv_file = './walmart.csv'
+    
+    # CSV 파일 읽기
+    try:
+        df = pd.read_csv(csv_file, nrows=500)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+
+    # 필드 선택 및 나이 매핑
+    df = df[['Gender', 'Age', 'Purchase', 'Product_ID', 'Product_Category']]
+    age_mapping = {
+        '0-17': '10s',
+        '18-25': '20s',
+        '26-35': '30s',
+        '36-45': '40s',
+        '46-50': '50s',
+        '51-55': '50s',
+        '55+': '50s+'
+    }
+
+    df['Age'] = df['Age'].map(age_mapping)
+
+    # 데이터베이스에 고객 및 구매 데이터 삽입
+    for index, row in df.iterrows():
+        name = f"customer{index+1}" 
+        email = f"customer{index+1}@example.com"
+        phone = "000-0000-0000"  
+        address = "LA"  
+        
+        # 고객 데이터 생성
+        customer, created = Customer.objects.get_or_create(
+            name=name,
+            email=email,
+            phone=phone,
+            address=address,
+            gender=row['Gender'],
+            age=row['Age']
+        )
+
+        # 구매 데이터 삽입
+        Purchase.objects.create(
+            customer=customer,
+            product_name=f"Product_{row['Product_ID']}",
+            product_code=row['Product_ID'],
+            category=row['Product_Category'],
+            amount=row['Purchase'],
+            date=datetime.now().date()
+        )
+
+    return JsonResponse({'message': 'CSV data successfully imported'}, status=200)
