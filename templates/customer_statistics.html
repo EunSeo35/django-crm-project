@@ -80,9 +80,9 @@
                     {% for gender in gender_sales %}
                         <tr>
                             <td>
-                                {% if gender.customer__gender == "남" %}
+                                {% if gender.customer__gender == "M" %}
                                     Male
-                                {% elif gender.customer__gender == "여" %}
+                                {% elif gender.customer__gender == "F" %}
                                     Female
                                 {% else %}
                                     Undefined

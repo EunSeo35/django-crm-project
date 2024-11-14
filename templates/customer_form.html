@@ -14,33 +14,7 @@
         <h2> Customer {% if object %}Edit{% else %}Add{% endif %}</h2>
         <form method="post" class="customer-form">
             {% csrf_token %}
-            <p>
-                <label for="id_name">Name:</label>
-                {{form.name}}
-            </p>
-            <p>
-                <label for="id_email">Email:</label>
-                {{ form.email }}
-            </p>
-            <p>
-                <label for="id_phone">Phone:</label>
-                {{ form.phone }}
-            </p>
-            <!-- 성별 필드 추가 -->
-            <p>
-                <label for="id_gender">Gender:</label>
-                {{ form.gender }}
-            </p>
-            <!-- 나이 필드 추가 -->
-            <p>
-                <label for="id_age">Age:</label>
-                {{ form.age }}
-            </p>
-            <p>
-                <label for="id_address">Address:</label>
-                {{ form.address }}
-            </p>
-
+            {{ form.as_p }}
             <button type="submit" class="submit-btn">Save</button>
         </form>
     </div>
