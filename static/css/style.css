@@ -13,24 +13,44 @@ body {
     display: block;
     width: 200px;
     height: auto;
-    margin: 0 auto 10px auto;
-
+    margin: 0 auto ;
+    margin-bottom: 0.5px;
 }
 
 /* 헤더 스타일 */
 h2 {
     color: #0071CE;
     text-align: center;
-    font-size: 30px;
-    margin-bottom: 30px;
+    font-size: 35px;
+    margin-bottom: 40px;
 }
 
 h3 {
     color: #0071CE;
     text-align: center;
-    font-size: 24px;
-    margin-bottom: 30px;
+    font-size: 25px;
+    margin-bottom: 40px;
 }
+.dashboard-table-container {
+    width: 40%; /* 너비를 40%로 설정하여 테이블이 너무 넓지 않도록 */
+    max-width: 600px; /* 최대 너비 설정 */
+    margin: 20px auto; /* 중앙 정렬 */
+    text-align: center;
+    overflow: hidden; /* 넘치는 부분을 숨깁니다 */
+}
+
+
+/* 차트들이 나란히 배치되도록 설정 */
+
+  .chart-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .chart-wrapper {
+    flex: 1;
+    width: 48%;
+  }
 
 /* 날짜 필터 폼 스타일 */
 .date-filter-form {
@@ -200,14 +220,87 @@ textarea,
 .submit-btn:hover, button[type="submit"]:hover, a:hover {
     background-color: #0071CE;
 }
+/* 성별별 판매액 테이블과 판매액 표시를 가로로 정렬 */
+.gender-sales-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    gap: 5%;
+    margin: 20px auto;
+    max-width: 80%;
 
-/* 테이블 스타일 */
-.table-container {
-    overflow-x: auto;
-    margin-top: 30px;
-    text-align: center;
 }
 
+.gender-table-container {
+    width: 60%;
+    overflow-x: auto;
+    margin-top: auto;
+    text-align: center;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+.gender-sales-summary {
+    width: 20%;
+    max-width: 45%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 60px;
+    text-align: center;
+    margin: auto;
+}
+/* 테이블 스타일 */
+.data-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    gap: 5%;
+    margin: 20px auto;
+    max-width: 80%;
+  }
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: auto;
+    text-align: center;
+    border-collapse: collapse;
+    margin: auto;
+}
+.product-sales-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    gap: 5%;
+    margin: 20px auto;
+    max-width: 80%;
+  }
+.product-table-container {
+    width: 70%;
+    overflow-x: auto;
+    margin-top: auto;
+    text-align: center;
+    border-collapse: collapse;
+    margin: auto;
+}
+.product-sales-summary {
+    width: 20%;
+    max-width: 20%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: auto;
+}
 table {
     width: 100%;
     border-collapse: collapse;
@@ -269,10 +362,6 @@ a[href*="customer_delete"] {
     margin-bottom: 20px;
 }
 
-.chart-container {
-    margin-bottom: 30px;
-}
-
 .recent-purchases {
     margin-top: 30px;
 }
@@ -295,21 +384,50 @@ a[href*="customer_delete"] {
 .recent-purchases li:last-child {
     border-bottom: none;
 }
+.centered-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.centered-table th,
+.centered-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+.centered-table th {
+    background-color: #FFC220;
+}
+.sales-summary h4 {
+    margin-bottom: 5px;
+}
+.sales-summary p {
+    margin-top: 0;
+}
+.stats-section {
+    margin-bottom: 40px;
+}
+
 /* sales-summary 스타일 */
 .sales-summary {
+    width: 20%;
+    max-width: 45%;
     background-color: #fff;
+    display: flex;
+    flex-direction: column;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
-    text-align: left;
+    margin-top: 60px;
+    text-align: center;
+    margin: auto;
+
 }
 
 .sales-summary h3 {
     color: #333;
     font-size: 18px;
     margin-bottom: 20px;
-    text-align: left;
+    text-align: center;
 }
 
 .sales-summary p {
