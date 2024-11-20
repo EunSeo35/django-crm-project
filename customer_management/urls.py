@@ -12,5 +12,5 @@ urlpatterns = [
     path('<int:pk>/delete/', CustomerDeleteView.as_view(), name='customer_delete'),
     path('<int:pk>/purchase_detail/', CustomerPurchaseDetailView.as_view(), name='customer_purchase_detail'),
     path('statistics/', customer_statistics, name='customer_statistics'),
-    path('csv/', views.import_csv, name='import_csv'),
+    path('csv/', views.import_csv, name='import_csv'), #데이터 삽입 코드 
 ]
