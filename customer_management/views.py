@@ -13,6 +13,11 @@ import pandas as pd
 from django.db.models import IntegerField, F
 from django.db.models.functions import Cast
 from django.db.models.functions import ExtractYear
+from rest_framework.generics import get_object_or_404
+from .serializers import CustomerSerializer
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 class CustomerListView(LoginRequiredMixin,ListView): 
     model = Customer
@@ -24,6 +29,22 @@ class CustomerCreateView(CreateView):
     template_name = 'customer_form.html'
     fields = ['name', 'gender', 'age', 'email', 'phone', 'address'] # 성별과 나이 필드 추가
     success_url = reverse_lazy('customer_management:customer_list') # customer_management/urls.py에서 customer_list라는 이름을 가진 URL 패턴을 찾아서 해당 URL을 반환
+
+class CustomerAPIView(APIView):
+    def put(self, request, pk):
+        customer = get_object_or_404(Customer, id = pk)
+        serializer = CustomerSerializer(customer, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status = status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        
+    def delete(self, request, pk):
+        customer = get_object_or_404(Customer, id=pk)
+        customer.delete()
+        return Response(status= status.HTTP_204_NO_CONTENT)
+        
  
 class CustomerUpdateView(UpdateView):
     model = Customer
