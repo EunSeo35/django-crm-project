@@ -77,96 +77,119 @@ class CustomerPurchaseDetailView(DetailView):
         context['purchases'] = Purchase.objects.filter(customer=customer)
         return context
 
-def customer_statistics(request):
-    today = timezone.now().date()
+class CustomerStatsAPIView(APIView): #REST API 통계
+    def get(self, request):
+        today = timezone.now().date()
 
-    # 기본 시작 날짜와 종료 날짜를 설정 (오늘 날짜 기준)
-    start_date = today - timedelta(days=30)  # 기본값: 최근 30일
-    end_date = today  # 기본값: 오늘
+# def customer_statistics(request): #원래
+#     today = timezone.now().date()
 
-    # URL에서 시작 날짜와 종료 날짜를 받으면 이를 사용
-    if 'start_date' in request.GET and 'end_date' in request.GET:
-        try:
-            start_date = timezone.datetime.strptime(request.GET['start_date'], '%Y-%m-%d').date()
-            end_date = timezone.datetime.strptime(request.GET['end_date'], '%Y-%m-%d').date()
-        except ValueError:
-            # 잘못된 날짜 형식이 들어왔을 경우 예외 처리 (기본값 유지)
-            pass
+        # 기본 시작 날짜와 종료 날짜를 설정 (오늘 날짜 기준)
+        start_date = today - timedelta(days=30)  # 기본값: 최근 30일
+        end_date = today  # 기본값: 오늘
 
-    # 고객 수
-    total_customers = Customer.objects.count()
+        # URL에서 시작 날짜와 종료 날짜를 받으면 이를 사용
+        if 'start_date' in request.GET and 'end_date' in request.GET:
+            try:
+                start_date = timezone.datetime.strptime(request.GET['start_date'], '%Y-%m-%d').date()
+                end_date = timezone.datetime.strptime(request.GET['end_date'], '%Y-%m-%d').date()
+            except ValueError:
+                # 잘못된 날짜 형식이 들어왔을 경우 예외 처리 (기본값 유지)
+                pass
 
-    # 선택된 날짜 범위 동안의 총 판매액
-    sales = Purchase.objects.filter(date__gte=start_date, date__lte=end_date).aggregate(Sum('amount'))['amount__sum'] or 0
+        # 고객 수
+        total_customers = Customer.objects.count()
 
-    # 월별 판매액
-    monthly_sales = Purchase.objects.filter(date__gte=start_date, date__lte=end_date) \
-        .annotate(month=models.functions.TruncMonth('date')) \
-        .values('month') \
-        .annotate(total_sales=Sum('amount')) \
-        .order_by('month')
+        # 선택된 날짜 범위 동안의 총 판매액
+        sales = Purchase.objects.filter(date__gte=start_date, date__lte=end_date).aggregate(Sum('amount'))['amount__sum'] or 0
 
-    # 연도별 판매액
-    yearly_sales = Purchase.objects.filter(date__gte=start_date, date__lte=end_date) \
-        .annotate(year=ExtractYear('date')) \
-        .values('year') \
-        .annotate(total_sales=Sum('amount')) \
-        .order_by('year')
+        # 월별 판매액
+        monthly_sales = Purchase.objects.filter(date__gte=start_date, date__lte=end_date) \
+            .annotate(month=models.functions.TruncMonth('date')) \
+            .values('month') \
+            .annotate(total_sales=Sum('amount')) \
+            .order_by('month')
 
-    # 카테고리별 판매액
-    category_sales = Purchase.objects.values('category') \
-        .annotate(total_sales=Sum('amount')) \
-        .order_by(Cast('category', IntegerField()))  # category를 숫자로 변환하여 정렬
-    
-    # 카테고리별 최소 및 최대 판매액 계산
-    if category_sales:
-        min_sales_category = min(category_sales, key=lambda x: x['total_sales'])
-        max_sales_category = max(category_sales, key=lambda x: x['total_sales'])
-    else:
-        min_sales_category = max_sales_category = None
+        # 연도별 판매액
+        yearly_sales = Purchase.objects.filter(date__gte=start_date, date__lte=end_date) \
+            .annotate(year=ExtractYear('date')) \
+            .values('year') \
+            .annotate(total_sales=Sum('amount')) \
+            .order_by('year')
 
-    # 나이별 판매액
-    age_sales = Purchase.objects.values('customer__age') \
-        .annotate(total_sales=Sum('amount')) \
-        .order_by('customer__age')
-    
-    # 나이별 최소/최대 판매액 계산
-    if age_sales:
-        min_sales_age = min(age_sales, key=lambda x: x['total_sales'])
-        max_sales_age = max(age_sales, key=lambda x: x['total_sales'])
-    else:
-        min_sales_age = max_sales_age = None  
-
-    # 성별별 판매액
-    gender_sales = Purchase.objects.values('customer__gender') \
-        .annotate(total_sales=Sum('amount')) \
-        .order_by('customer__gender')
-
-    # 성별별 최소/최대 판매액 계산
-    if gender_sales:
-        min_sales_gender = min(gender_sales, key=lambda x: x['total_sales'])
-        max_sales_gender = max(gender_sales, key=lambda x: x['total_sales'])
-    else:
-        min_sales_gender = max_sales_gender = None
+        # 카테고리별 판매액
+        category_sales = Purchase.objects.values('category') \
+            .annotate(total_sales=Sum('amount')) \
+            .order_by(Cast('category', IntegerField()))  # category를 숫자로 변환하여 정렬
         
-    return render(request, 'customer_statistics.html', {
-        # 대시보드 데이터
-        'total_customers': total_customers,
-        'sales': sales,
-        'monthly_sales': monthly_sales,
-        'yearly_sales': yearly_sales,
-        'category_sales': category_sales,
-        'age_sales': age_sales,
-        'gender_sales': gender_sales,
-        'min_sales_category': min_sales_category,
-        'max_sales_category': max_sales_category,
-        'min_sales_age': min_sales_age,
-        'max_sales_age': max_sales_age,
-        'min_sales_gender': min_sales_gender,
-        'max_sales_gender': max_sales_gender,
-        'start_date': start_date,
-        'end_date': end_date,
-    })
+        # 카테고리별 최소 및 최대 판매액 계산
+        if category_sales:
+            min_sales_category = min(category_sales, key=lambda x: x['total_sales'])
+            max_sales_category = max(category_sales, key=lambda x: x['total_sales'])
+        else:
+            min_sales_category = max_sales_category = None
+
+        # 나이별 판매액
+        age_sales = Purchase.objects.values('customer__age') \
+            .annotate(total_sales=Sum('amount')) \
+            .order_by('customer__age')
+        
+        # 나이별 최소/최대 판매액 계산
+        if age_sales:
+            min_sales_age = min(age_sales, key=lambda x: x['total_sales'])
+            max_sales_age = max(age_sales, key=lambda x: x['total_sales'])
+        else:
+            min_sales_age = max_sales_age = None  
+
+        # 성별별 판매액
+        gender_sales = Purchase.objects.values('customer__gender') \
+            .annotate(total_sales=Sum('amount')) \
+            .order_by('customer__gender')
+
+        # 성별별 최소/최대 판매액 계산
+        if gender_sales:
+            min_sales_gender = min(gender_sales, key=lambda x: x['total_sales'])
+            max_sales_gender = max(gender_sales, key=lambda x: x['total_sales'])
+        else:
+            min_sales_gender = max_sales_gender = None
+
+        data = {
+            'total_customers': total_customers,
+            'sales': sales,
+            'monthly_sales': monthly_sales,
+            'yearly_sales': yearly_sales,
+            'category_sales': category_sales,
+            'age_sales': age_sales,
+            'gender_sales': gender_sales,
+            'min_sales_category': min_sales_category,
+            'max_sales_category': max_sales_category,
+            'min_sales_age': min_sales_age,
+            'max_sales_age': max_sales_age,
+            'min_sales_gender': min_sales_gender,
+            'max_sales_gender': max_sales_gender,
+            'start_date': start_date,
+            'end_date': end_date,
+        }
+        return Response (data, status=status.HTTP_200_OK)
+
+        # return render(request, 'customer_statistics.html', {
+        #     # 대시보드 데이터
+        #     'total_customers': total_customers,
+        #     'sales': sales,
+        #     'monthly_sales': monthly_sales,
+        #     'yearly_sales': yearly_sales,
+        #     'category_sales': category_sales,
+        #     'age_sales': age_sales,
+        #     'gender_sales': gender_sales,
+        #     'min_sales_category': min_sales_category,
+        #     'max_sales_category': max_sales_category,
+        #     'min_sales_age': min_sales_age,
+        #     'max_sales_age': max_sales_age,
+        #     'min_sales_gender': min_sales_gender,
+        #     'max_sales_gender': max_sales_gender,
+        #     'start_date': start_date,
+        #     'end_date': end_date,
+        # })
     
     
 def import_csv(request):
