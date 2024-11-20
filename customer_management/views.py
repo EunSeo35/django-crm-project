@@ -13,6 +13,16 @@ import pandas as pd
 from django.db.models import IntegerField, F
 from django.db.models.functions import Cast
 from django.db.models.functions import ExtractYear
+from rest_framework.generics import ListAPIView, CreateAPIView
+from .serializers import CustomerSerializer
+
+class CustomerListAPIView(ListAPIView): #REST API 고객 목록 조회
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+
+class CustomerCreateAPIView(CreateAPIView): #REST API 고객 생성
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
 
 class CustomerListView(LoginRequiredMixin,ListView): 
     model = Customer
@@ -23,8 +33,8 @@ class CustomerCreateView(CreateView):
     model = Customer
     template_name = 'customer_form.html'
     fields = ['name', 'gender', 'age', 'email', 'phone', 'address'] # 성별과 나이 필드 추가
-    success_url = reverse_lazy('customer_management:customer_list') # customer_management/urls.py에서 customer_list라는 이름을 가진 URL 패턴을 찾아서 해당 URL을 반환
- 
+    success_url = reverse_lazy('customer_management:customer_list') # customer_management/urls.py에서 customer_list라는 이름을 가진 URL 패턴을 찾아서 해당 URL을 반환 
+
 class CustomerUpdateView(UpdateView):
     model = Customer
     template_name = 'customer_form.html'
