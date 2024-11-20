@@ -18,6 +18,16 @@ from .serializers import CustomerSerializer
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.generics import ListAPIView, CreateAPIView
+from .serializers import CustomerSerializer
+
+class CustomerListAPIView(ListAPIView): #REST API 고객 목록 조회
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+
+class CustomerCreateAPIView(CreateAPIView): #REST API 고객 생성
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
 
 class CustomerListView(LoginRequiredMixin,ListView): 
     model = Customer
@@ -45,7 +55,7 @@ class CustomerAPIView(APIView):
         customer.delete()
         return Response(status= status.HTTP_204_NO_CONTENT)
         
- 
+
 class CustomerUpdateView(UpdateView):
     model = Customer
     template_name = 'customer_form.html'
