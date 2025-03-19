@@ -20,10 +20,6 @@
     <img src="https://avatars.githubusercontent.com/selina7704" width="90">
 <br>
 
-## 🗓️ 개발 기간
-<p align="justify">24.11.12일 ~ 24.11.14일</p>
-<br>
-
 ## 🐍 기술 스택
 - **언어**: Python
 - **프레임워크**: Django
